@@ -32,11 +32,11 @@ void button_pressed()
   ){
     disable_adc_interrupt();
       threshold = float(threshold)*.9;
-      Serial.print("threshold- [");
-      Serial.print(threshold);
-      Serial.print("/");
-      Serial.print(65535);
-      Serial.println("]");
+      SERIAL_PRINT("threshold- [");
+      SERIAL_PRINT(threshold);
+      SERIAL_PRINT("/");
+      SERIAL_PRINT(65535);
+      SERIAL_PRINT("]\n");
       save_eeprom();
     enable_adc_interrupt();
     button_pressed_t0 = button_pressed_t1;
@@ -47,11 +47,11 @@ void button_pressed()
   ){
     disable_adc_interrupt();
       threshold = float(threshold)/.9;
-      Serial.print("threshold+ [");
-      Serial.print(threshold);
-      Serial.print("/");
-      Serial.print(65535);
-      Serial.println("]");
+      SERIAL_PRINT("threshold+ [");
+      SERIAL_PRINT(threshold);
+      SERIAL_PRINT("/");
+      SERIAL_PRINT(65535);
+      SERIAL_PRINT("]\n");
       save_eeprom();
       button_pressed_t0 = button_pressed_t1;
     enable_adc_interrupt();
@@ -60,7 +60,7 @@ void button_pressed()
       recalibrate_pin_state1==LOW &&
       button_pressed_t1 - button_pressed_t0 > 10000
   ){
-    prepare_calibration();
+    prepare_calibration(false,false,false);
     button_pressed_t0 = button_pressed_t1;
   }
   threshold_dec_pin_state0 = threshold_dec_pin_state1;

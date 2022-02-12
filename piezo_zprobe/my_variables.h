@@ -1,6 +1,16 @@
 #ifndef MY_VARIABLES_H
 #define MY_VARIABLES_H 
 
+//#define USE_SERIAL 
+#define USE_EEPROM 
+#define USE_BUTTONS 
+
+#ifdef USE_SERIAL
+  #define SERIAL_PRINT(a) Serial.print(a)
+#else
+  #define SERIAL_PRINT(a) 
+#endif
+
 extern int v1mean;
 extern float freq;
 extern unsigned int threshold;
@@ -16,6 +26,5 @@ extern unsigned int max_signal;
 
 extern int wsize;
 extern int COUNT;
-
 
 #endif

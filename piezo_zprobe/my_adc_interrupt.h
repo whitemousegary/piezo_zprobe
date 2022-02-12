@@ -1,7 +1,7 @@
 #ifndef MY_ADC_INTERRUPT_H
-#define MY_ADC_INTERRUPT_H
+#define MY_ADC_INTERRUPT_H 
 
-void prepare_calibration();
+void prepare_calibration( bool v1mean_init1, bool finit1, bool tinit1 );
 void prepare_report();
 
 void init_adc();

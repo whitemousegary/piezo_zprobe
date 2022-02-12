@@ -8,8 +8,8 @@
 ////////////////////////////////////////////////////////////
 // operation variables
 //
-  int wsize;
-  int COUNT;
+  int wsize = 0;
+  int COUNT = 0;
   int count_pin_high   = 0;      // [0,COUNT)
   int count_pin_slient = 0;      // [0,2*wsize)
   int nacc0 = 0;      // [0,wsize)
@@ -86,13 +86,15 @@ void init_adc()
   enable_adc_interrupt();
 }
 
-void prepare_calibration()
+void prepare_calibration( bool v1mean_init1, bool finit1, bool tinit1 )
 {
+  if(v1mean_init1 && finit1 && tinit1 )
+    return;
   disable_adc_interrupt();
-    v1mean_init = false;
-    finit = false;
-    tinit = false;
-    Serial.print("Calibrating variables...\n");
+    SERIAL_PRINT("Calibrating variables...\n");
+    v1mean_init = v1mean_init1;
+    finit = finit1;
+    tinit = tinit1;
   enable_adc_interrupt();
   delay(100);
   prepare_report();
